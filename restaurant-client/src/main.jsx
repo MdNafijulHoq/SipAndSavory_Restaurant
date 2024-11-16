@@ -12,6 +12,11 @@ import { HelmetProvider } from 'react-helmet-async';
 import Order from './pages/Order/Order/Order';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Login from './pages/Login/Login';
+import { Toaster } from 'react-hot-toast';
+import AuthProviders from './Providers/AuthProviders';
+import LoginRegTabs from './pages/LoginRegTabs/LoginRegTabs';
+import Registration from './pages/Registration/Registration';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +35,20 @@ const router = createBrowserRouter([
         path: "/order/:category?",
         element: <Order></Order>,
       },
+      {
+        path: "/loginRegTabs",
+        element: <LoginRegTabs></LoginRegTabs>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/registration",
+        element: <Registration></Registration>,
+      },
+
+     
       
     ],
   },
@@ -50,12 +69,15 @@ const queryClient = new QueryClient()
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-    <div className='max-w-screen-xl mx-auto'>
-        <RouterProvider router={router} future={{ v7_startTransition: true }} />
-    </div>
-    </HelmetProvider>
+    <AuthProviders>
+        <HelmetProvider>
+        <div className='max-w-screen-xl mx-auto'>
+            <RouterProvider router={router} future={{ v7_startTransition: true }} />
+        </div>
+        </HelmetProvider>
+    </AuthProviders>
     <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
+    <Toaster />
   </StrictMode>,
 )

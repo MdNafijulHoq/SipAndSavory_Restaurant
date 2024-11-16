@@ -33,7 +33,7 @@ const Menu = () => {
             <CategorySection subHeading={"Don't miss"} heading={"TODAY'S OFFER"}></CategorySection>
             <MenuCategory items={offeredItems}></MenuCategory>
             {/* Dessert Section */}
-            <MenuCategory items={dessertItems} menuTitle="Desserts" menuDescription="Enthusiastically embrace compelling applications whereas world-class innovation. Compellingly seize." menuItemsCover={menuBgImg}></MenuCategory>
+            <MenuCategory items={dessertItems} menuTitle="Desserts" menuDescription="Enthusiastically embrace compelling applications whereas world-className innovation. Compellingly seize." menuItemsCover={menuBgImg}></MenuCategory>
             {/* Pizza Section */}
             <MenuCategory items={pizzaItems} menuTitle="Pizzas" menuDescription="Compellingly enable maintainable opportunities with reliable architectures. Energistically productivate." menuItemsCover={menuBgImg1}></MenuCategory>
              {/* Salad Section */}

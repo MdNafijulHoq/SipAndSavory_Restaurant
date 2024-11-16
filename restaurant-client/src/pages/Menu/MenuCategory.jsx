@@ -20,7 +20,7 @@ const MenuCategory = ({ items, menuDescription, menuTitle, menuItemsCover }) => 
                 ))}
             </div>
             
-            {/* Convert menuTitle to lowercase for URL consistency */}
+            {/* Convert menuTitle to lowercase htmlFor URL consistency */}
             <Link to={`/order/${menuTitle?.toLowerCase()}`}>
                 <p className="btn btn-outline border-0 border-b-4 btn-info uppercase max-w-64 flex mx-auto">
                     ORDER YOUR FAVOURITE FOOD
