@@ -17,6 +17,11 @@ import { Toaster } from 'react-hot-toast';
 import AuthProviders from './Providers/AuthProviders';
 import LoginRegTabs from './pages/LoginRegTabs/LoginRegTabs';
 import Registration from './pages/Registration/Registration';
+import DashboardRoot from './Layout/DashboardRoot';
+import MyCart from './pages/Dashboart/MyCart/MyCart';
+import PrivateRoute from './Routes/PrivateRoute';
+import ShopDash from './pages/Dashboart/Dashboart/ShopDash';
+import Contact from './pages/Dashboart/Dashboart/Contact';
 
 const router = createBrowserRouter([
   {
@@ -46,11 +51,29 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration></Registration>,
-      },
-
-     
-      
+      }, 
     ],
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><DashboardRoot></DashboardRoot></PrivateRoute>,
+    children: [
+     { 
+      path: 'cartDash',
+      element: <MyCart></MyCart>
+    },
+    {
+      path: 'shopDash',
+      element: <ShopDash></ShopDash>,
+    },
+    {
+      path: 'contactDash',
+      element: <Contact></Contact>,
+    },
+
+          
+    ]
+
   },
 ],
 {

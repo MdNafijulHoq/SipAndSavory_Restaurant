@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders';
-import useCarts from '../../../CustomHooks/useCarts';
 
 const NavBar = () => {
   const {user, logOut} = useContext(AuthContext);
-  const { data } = useCarts();
+  
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -98,33 +97,24 @@ const NavBar = () => {
                   ? "relative text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
                   : "relative text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
               }>Home</NavLink>
-              <a title='Contact Us' href="#" className="my-2 text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 md:mx-4 md:my-0">Contact Us</a>
-              <NavLink title='Dashboard' to='/' className="my-2 text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 md:mx-4 md:my-0">Dashboard</NavLink>
+
+              <NavLink  title='Contact' className={({ isActive}) =>
+                isActive
+                  ? "relative md:mx-4 text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
+                  : "relative md:mx-4 text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
+              }>Contact</NavLink>
+             
               <NavLink to='/menu' title='Menu' className={({ isActive}) =>
                 isActive
-                  ? "relative mr-4 text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
-                  : "relative mr-4 text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
+                  ? "relative text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
+                  : "relative text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
               }>Menu</NavLink>
               <NavLink title='Order' to="/order"
               className={({ isActive}) =>
                 isActive
-                  ? "relative mt-3 md-mt-0 mb-3 md:mb-0 lg:mt-0 xl:mt-0 2xl:mt-0 lg:mb-0 xl:mb-0 2xl:mb-0 text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
-                  : "relative mt-3 md-mt-0 mb-3 md:mb-0 lg:mt-0 xl:mt-0 2xl:mt-0 lg:mb-0 xl:mb-0 2xl:mb-0 text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
+                  ? "relative md:mx-4 text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
+                  : "relative md:mx-4 text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
               }>Order</NavLink> 
-            </div>
-
-            <div className="flex justify-start md:block mr-4">
-              <NavLink title='Your order' to="/"
-              className={({ isActive}) =>
-                isActive
-                  ? "relative mt-2 md:mt-0 text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
-                  : "relative mt-2 md:mt-0 text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
-              }>
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span className="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span><div className="bg-pink-600 text-white p-1 rounded-3xl text-xs">+{data?.length || 0}</div>
-              </NavLink>
             </div>
 
             {
@@ -139,7 +129,15 @@ const NavBar = () => {
   
             {/* Profile Dropdown */}
             {
-              user && <div className="dropdown dropdown-end z-50 hidden md:block">
+              user && 
+              <>
+              <NavLink title='DashBoard' to='/dashboard' className={({ isActive}) =>
+                isActive
+                  ? "relative text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
+                  : "relative text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
+              }>Dashboard</NavLink>
+
+              <div className="dropdown dropdown-end z-50 hidden md:block md:ml-3">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img title={user?.displayName} referrerPolicy="no-referrer" alt="User Profile Photo" src="https://images.pexels.com/photos/943084/pexels-photo-943084.jpeg?auto=compress&cs=tinysrgb&w=600" />
@@ -151,6 +149,7 @@ const NavBar = () => {
                 <li className="mt-2"><button onClick={handleLogOut} className="bg-gray-200 hover:bg-gray-600 hover:text-white block text-center">Logout</button></li>
               </ul>
             </div>
+              </>
             }
           </div>
         </div>
