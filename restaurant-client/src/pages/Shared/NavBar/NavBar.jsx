@@ -45,7 +45,7 @@ const NavBar = () => {
                     <img title={user?.displayName}
                       referrerPolicy='no-referrer'
                       alt='User Profile Photo'
-                      src='https://images.pexels.com/photos/943084/pexels-photo-943084.jpeg?auto=compress&cs=tinysrgb&w=600'
+                      src={user?.photoURL}
                     />
                   </div>
                 </div>
@@ -140,7 +140,7 @@ const NavBar = () => {
               <div className="dropdown dropdown-end z-50 hidden md:block md:ml-3">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img title={user?.displayName} referrerPolicy="no-referrer" alt="User Profile Photo" src="https://images.pexels.com/photos/943084/pexels-photo-943084.jpeg?auto=compress&cs=tinysrgb&w=600" />
+                  <img title={user?.displayName} referrerPolicy="no-referrer" alt="User Profile Photo" src={user?.photoURL} />
                 </div>
               </div>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

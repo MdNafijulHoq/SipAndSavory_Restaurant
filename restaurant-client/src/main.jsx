@@ -20,8 +20,11 @@ import Registration from './pages/Registration/Registration';
 import DashboardRoot from './Layout/DashboardRoot';
 import MyCart from './pages/Dashboart/MyCart/MyCart';
 import PrivateRoute from './Routes/PrivateRoute';
+import AdminRoute from './Routes/AdminRoute';
 import ShopDash from './pages/Dashboart/Dashboart/ShopDash';
 import Contact from './pages/Dashboart/Dashboart/Contact';
+import AllUsers from './pages/Dashboart/AllUsers/AllUsers';
+import AddItems from './pages/Dashboart/AddItems/AddItems';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +61,20 @@ const router = createBrowserRouter([
     path: '/dashboard',
     element: <PrivateRoute><DashboardRoot></DashboardRoot></PrivateRoute>,
     children: [
+      // Admin
+      {
+        path: 'adminAddItems',
+        element: <AddItems></AddItems>,
+      },
+      {
+        path: 'adminAllUsers',
+        element: <AllUsers></AllUsers>,
+      },
+      
+
+
+
+      // Users
      { 
       path: 'cartDash',
       element: <MyCart></MyCart>

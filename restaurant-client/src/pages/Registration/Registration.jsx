@@ -6,9 +6,11 @@ import { BiHide } from "react-icons/bi";
 import { BiShow } from "react-icons/bi";
 import { useForm } from "react-hook-form"
 import { Helmet } from 'react-helmet-async';
+import useAxiosPublic from '../../CustomHooks/useAxiosPublic';
 
 const Registration = () => {
     const {user, loading, setUser, createUser, logOut, updateUserProfile} = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
@@ -34,9 +36,21 @@ const Registration = () => {
                     ...user, photoURL: data.photo, displayName: data.name
                 }
             )
-            toast.success('SignIn Successful')
-            logOut();
-            navigate('/login')
+
+            // create user entry in the database
+            const userInfo = {
+                name: data.name,
+                email: data.email
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res => {
+                if(res.data.insertedId){
+                    toast.success('SignIn Successful')
+                    logOut();
+                    navigate('/login')
+                }
+            })
+            
         }
         catch(error){
             // console.log(error)

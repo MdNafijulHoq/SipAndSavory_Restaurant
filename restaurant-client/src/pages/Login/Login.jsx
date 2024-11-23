@@ -11,11 +11,13 @@ import { AuthContext } from '../../Providers/AuthProviders';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from "react-hook-form"
+import useAxiosPublic from '../../CustomHooks/useAxiosPublic';
 const Login = () => {
 
-    const {user, loading, setUser, signIn} = useContext(AuthContext);
+    const {user, loading, setUser, signIn, signInWithGoogle} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
     
 
     const from = location.state?.from?.pathname || "/";
@@ -27,6 +29,7 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
+    // Formik
     const {
         register,
         handleSubmit,
@@ -47,6 +50,7 @@ const Login = () => {
         }
       }
 
+    // For captcha
     useEffect(() => {
         loadCaptchaEnginge(6); 
     },[])
@@ -62,6 +66,32 @@ const Login = () => {
             setDisable(true)
         }
     }
+
+    // Google SignIn
+    const handleGoogleSignIn = async() => {
+        try{
+            await signInWithGoogle()
+            console.log(user.email, user.displayName)
+            // create Googleuser entry in the database
+            const userInfo = {
+                name: user?.displayName,
+                email: user?.email,
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res => {
+                console.log(res.data)
+                toast.success('Signin With Google Successful')
+                navigate(from, {replace: true})
+            })
+            
+            
+        }
+        catch (err){
+            // console.log(err)
+            toast.error(err?.message)
+        }
+    }
+
    
 
     return (
@@ -142,10 +172,10 @@ const Login = () => {
 
             <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
         </div>
-        <div className="flex items-center justify-evenly mt-4">
+        <div className="flex items-center justify-evenly mt-4 mx-20">
             <span title='Facebook' className="border border-gray-700 rounded-3xl p-2 hover:underline"><FaFacebook /></span>
 
-            <a title='Google' href="#" className="border border-gray-700 rounded-3xl hover:underline p-2"><FcGoogle /></a>
+            <span onClick={handleGoogleSignIn} title='Google' href="#" className="border border-gray-700 rounded-3xl hover:underline p-2"><FcGoogle /></span>
 
             <span title='Github' className="border border-gray-700 rounded-3xl p-2 hover:underline"><FaGithub /></span>
         </div>
