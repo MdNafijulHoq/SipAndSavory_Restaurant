@@ -22,7 +22,7 @@ const AdminRoute = ({children}) => {
         </div>
     }
 
-    if(user && isAdmin){
+    if(user || isAdmin){
         return children;
     }
     return <Navigate to='/login' state={{ from: location}} replace></Navigate>

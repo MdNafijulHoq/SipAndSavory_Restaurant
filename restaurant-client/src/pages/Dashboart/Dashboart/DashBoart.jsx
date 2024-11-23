@@ -92,7 +92,7 @@ const DashBoart = () => {
                 <span className='mx-4 font-medium uppercase'>Add Items</span>
             </NavLink>
 
-            <NavLink to='/' className={({ isActive }) =>
+            <NavLink to='adminManageItem' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
                       ? 'bg-blue-800 text-white' // Active state styles

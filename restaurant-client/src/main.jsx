@@ -25,6 +25,8 @@ import ShopDash from './pages/Dashboart/Dashboart/ShopDash';
 import Contact from './pages/Dashboart/Dashboart/Contact';
 import AllUsers from './pages/Dashboart/AllUsers/AllUsers';
 import AddItems from './pages/Dashboart/AddItems/AddItems';
+import ManageItem from './pages/Dashboart/ManageItem/ManageItem';
+import UpdateItem from './pages/Dashboart/ManageItem/UpdateItem';
 
 const router = createBrowserRouter([
   {
@@ -64,11 +66,20 @@ const router = createBrowserRouter([
       // Admin
       {
         path: 'adminAddItems',
-        element: <AddItems></AddItems>,
+        element: <AdminRoute><AddItems></AddItems></AdminRoute>,
+      },
+      {
+        path: 'adminManageItem',
+        element: <AdminRoute><ManageItem></ManageItem></AdminRoute>,
+      },
+      {
+        path: 'updateItem/:id',
+        element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
       },
       {
         path: 'adminAllUsers',
-        element: <AllUsers></AllUsers>,
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
       },
       
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import CategorySection from '../../../components/FoodCategorySection/CategorySection';
-import { FaUtensils } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import CategorySection from '../../../components/FoodCategorySection/CategorySection';
+import { useLoaderData } from 'react-router-dom';
 import useAxiosPublic from '../../../CustomHooks/useAxiosPublic';
 import useAxiosSecure from '../../../CustomHooks/useAxiosSecure';
 import toast from 'react-hot-toast';
@@ -9,7 +9,9 @@ import toast from 'react-hot-toast';
 const image_hosting_key = import.meta.env.VITE_IMAGE_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
-const AddItems = () => {
+const UpdateItem = () => {
+    const item = useLoaderData();
+    console.log(item);
     const { register, handleSubmit, reset } = useForm()
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
@@ -31,26 +33,25 @@ const AddItems = () => {
                 recipe: data.recipe,
                 image: res.data.data.display_url,
              }
-             const menuRes = await axiosSecure.post('/menu', menuItem)
+             const menuRes = await axiosSecure.patch(`/menu/${item._id}`, menuItem)
              console.log(menuRes.data)
-             if(menuRes.data.insertedId){
-                reset();
-                toast.success(`${data.name} is added to the menu.`)
+             if(menuRes.data.modifiedCount > 0){
+                // reset();
+                toast.success(`${data.name} is updated to the menu.`)
                 }
         }
-        console.log('with image url', res.data)
     }
     return (
-        <div>
-            <CategorySection subHeading="What's new?" heading="ADD AN ITEM"></CategorySection>
-            <div className='bg-slate-100 dark:bg-slate-300 px-6 sm:px-10 lg:px-14 py-6 rounded-md'>
+      <div>
+        <CategorySection subHeading='Refresh Info' heading='Update Item'></CategorySection>
+          <div className='bg-slate-100 dark:bg-slate-300 px-6 sm:px-10 lg:px-14 py-6 rounded-md'>
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full mb-4">
                         <label className="label">
                             <span className="label-text font-semibold">Recipe name*</span>
                         </label>
                         <input {...register("name", { required: true })}
-                            type="text"
+                            type="text" defaultValue={item.name}
                             placeholder="Recipe Name" 
                             className="input input-bordered w-full"
                         />
@@ -64,7 +65,7 @@ const AddItems = () => {
                             <select
                                 {...register("category", { required: true })}
                                 className="select select-bordered w-full"
-                                defaultValue="">
+                                defaultValue={item.category}>
                                 <option value="" disabled>Category</option>
                                 <option value="salad">Salad</option>
                                 <option value="pizza">Pizza</option>
@@ -81,7 +82,7 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text font-semibold">Price*</span>
                             </label>
-                            <input {...register("price", { required: true })}
+                            <input {...register("price", { required: true })} defaultValue={item.price}
                                 type="number" 
                                 placeholder="Price" 
                                 className="input input-bordered w-full"
@@ -92,7 +93,7 @@ const AddItems = () => {
                         <label className="label">
                             <span className="label-text font-semibold">Recipe Details*</span>
                         </label>
-                        <textarea {...register("recipe", { required: true })}
+                        <textarea {...register("recipe", { required: true })} defaultValue={item.recipe}
                             className="textarea textarea-bordered h-24" 
                             placeholder="Recipe details">
                         </textarea>
@@ -103,14 +104,13 @@ const AddItems = () => {
                             className="file-input w-full"
                         />
                     </div>
-                    <button className='btn text-white mt-6 bg-gradient-to-r from-amber-900 to-amber-600'>
-                        ADD ITEM <FaUtensils />
+                    <button className='btn flex mx-auto text-white mt-6 bg-gradient-to-r from-amber-900 to-amber-600'>
+                        UPDATE ITEM
                     </button>
                 </form>
 </div>
-
-        </div>
+      </div>
     );
 };
 
-export default AddItems;
+export default UpdateItem;
