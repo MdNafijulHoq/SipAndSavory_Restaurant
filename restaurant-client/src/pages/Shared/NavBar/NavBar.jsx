@@ -98,7 +98,7 @@ const NavBar = () => {
                   : "relative text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
               }>Home</NavLink>
 
-              <NavLink  title='Contact' className={({ isActive}) =>
+              <NavLink to='/contact-us'  title='Contact' className={({ isActive}) =>
                 isActive
                   ? "relative md:mx-4 text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
                   : "relative md:mx-4 text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
@@ -131,7 +131,7 @@ const NavBar = () => {
             {
               user && 
               <>
-              <NavLink title='DashBoard' to='/dashboard' className={({ isActive}) =>
+              <NavLink title='DashBoard' to='/dashboard/userHome' className={({ isActive}) =>
                 isActive
                   ? "relative text-yellow-400 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"
                   : "relative text-slate-100 font-semibold transition-colors duration-300 transform dark:text-gray-200 hover:text-yellow-400 dark:hover:text-yellow-400 flex items-center gap-1"

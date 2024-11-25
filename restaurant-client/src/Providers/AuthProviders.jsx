@@ -41,18 +41,20 @@ const AuthProviders = ({children}) => {
             axiosPublic.post('/jwt', userInfo )
             .then(res => {
               if(res.data.token){
-                localStorage.setItem('access-token', res.data.token)
+                localStorage.setItem('access-token', res.data.token);
+                setLoading(false);
               }
             })
 
           } 
           //  remove token 
           else{
-              localStorage.removeItem('access-token')
+              localStorage.removeItem('access-token');
+              setLoading(false);
 
           }
-          console.log('CurrentUser-->', currentUser)
-          setLoading(false)
+          // console.log('CurrentUser-->', currentUser)
+         
         })
         return () => {
           return unsubscribe()

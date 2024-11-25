@@ -21,12 +21,18 @@ import DashboardRoot from './Layout/DashboardRoot';
 import MyCart from './pages/Dashboart/MyCart/MyCart';
 import PrivateRoute from './Routes/PrivateRoute';
 import AdminRoute from './Routes/AdminRoute';
-import ShopDash from './pages/Dashboart/Dashboart/ShopDash';
-import Contact from './pages/Dashboart/Dashboart/Contact';
 import AllUsers from './pages/Dashboart/AllUsers/AllUsers';
 import AddItems from './pages/Dashboart/AddItems/AddItems';
 import ManageItem from './pages/Dashboart/ManageItem/ManageItem';
 import UpdateItem from './pages/Dashboart/ManageItem/UpdateItem';
+import Payment from './pages/Dashboart/Payment/Payment';
+import PaymentHistory from './pages/Dashboart/PaymentHistory/PaymentHistory';
+import AdminHome from './pages/Dashboart/AdminHome/AdminHome';
+import UserHome from './pages/Dashboart/UserHome/UserHome';
+import Contact from './pages/Contact/Contact';
+import AddReview from './pages/Dashboart/AddReview/AddReview';
+import Reservation from './pages/Dashboart/Reservation/Reservation';
+import MyBooking from './pages/Dashboart/MyBooking/MyBooking';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/contact-us",
+        element: <Contact></Contact>,
       },
       {
         path: "/menu",
@@ -65,6 +75,10 @@ const router = createBrowserRouter([
     children: [
       // Admin
       {
+        path: 'adminHome',
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>,
+      },
+      {
         path: 'adminAddItems',
         element: <AdminRoute><AddItems></AddItems></AdminRoute>,
       },
@@ -81,23 +95,37 @@ const router = createBrowserRouter([
         path: 'adminAllUsers',
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
       },
-      
-
-
 
       // Users
+      { 
+        path: 'userHome',
+        element: <UserHome></UserHome>,
+      },
+      {
+        path: 'reservation',
+        element: <Reservation></Reservation>,
+      },
+      { 
+        path: 'payment',
+        element: <Payment></Payment>,
+      },
+      { 
+        path: 'paymentHistory',
+        element: <PaymentHistory></PaymentHistory>,
+      },
      { 
       path: 'cartDash',
-      element: <MyCart></MyCart>
+      element: <MyCart></MyCart>,
     },
     {
-      path: 'shopDash',
-      element: <ShopDash></ShopDash>,
+      path: 'addReview',
+      element: <AddReview></AddReview>,
     },
     {
-      path: 'contactDash',
-      element: <Contact></Contact>,
+      path: 'myBooking',
+      element: <MyBooking></MyBooking>,
     },
+
 
           
     ]

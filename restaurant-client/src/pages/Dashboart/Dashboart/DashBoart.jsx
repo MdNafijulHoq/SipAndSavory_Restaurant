@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import { Link, NavLink } from "react-router-dom";
 import { FiHome } from "react-icons/fi";
@@ -18,6 +18,7 @@ import { FaListUl } from "react-icons/fa";
 import { FaBook } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa";
 import useAdmin from "../../../CustomHooks/useAdmin";
+import { AuthContext } from "../../../Providers/AuthProviders";
 const DashBoart = () => {
   const { data } = useCarts();
   const [isActive, setActive] = useState(false)
@@ -27,7 +28,7 @@ const DashBoart = () => {
 
   // TODO: get isAdmin value from the database
   const [isAdmin] = useAdmin();
-  
+  const {user} = useContext(AuthContext)
   return (
       <>
        {/* Small Screen Navbar */}
@@ -67,10 +68,10 @@ const DashBoart = () => {
       <div className="flex flex-col justify-between flex-1">
         <nav>
 
-            {
-              isAdmin ? 
-              <>
-                <NavLink to='/' className={({ isActive }) =>
+          {
+            user && isAdmin && 
+            <>
+              <NavLink to='/dashboard/adminHome' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
                       ? 'bg-blue-800 text-white' // Active state styles
@@ -124,11 +125,13 @@ const DashBoart = () => {
                 <FaUsers className='w-5 h-5' />
                 <span className='mx-4 font-medium uppercase'>All Users</span>
             </NavLink>
+            </>
+          }
 
-              </> 
-              : 
-              <>
-                  <NavLink to='/' className={({ isActive }) =>
+          {
+            user && !isAdmin && 
+            <>
+              <NavLink to='/dashboard/userHome' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
                       ? 'bg-blue-800 text-white' // Active state styles
@@ -139,7 +142,7 @@ const DashBoart = () => {
                 <span className='mx-4 font-medium uppercase'>User Home</span>
             </NavLink>
 
-            <NavLink to='/' className={({ isActive }) =>
+            <NavLink to='reservation' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
                       ? 'bg-blue-800 text-white' // Active state styles
@@ -150,7 +153,7 @@ const DashBoart = () => {
                 <span className='mx-4 font-medium uppercase'>Reservation</span>
             </NavLink>
 
-            <NavLink to='/' className={({ isActive }) =>
+            <NavLink to='paymentHistory' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
                       ? 'bg-blue-800 text-white' // Active state styles
@@ -173,7 +176,7 @@ const DashBoart = () => {
                 <span className='mx-4 font-medium uppercase'>My Cart <span className="bg-pink-600 text-white p-1 rounded-3xl text-xs">+{data?.length || 0}</span></span>
             </NavLink>
 
-            <NavLink to='/' className={({ isActive }) =>
+            <NavLink to='addReview' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
                       ? 'bg-blue-800 text-white' // Active state styles
@@ -184,7 +187,7 @@ const DashBoart = () => {
                 <span className='mx-4 font-medium uppercase'>Add Review</span>
             </NavLink>
 
-            <NavLink to='/' className={({ isActive }) =>
+            <NavLink to='myBooking' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
                       ? 'bg-blue-800 text-white' // Active state styles
@@ -194,15 +197,15 @@ const DashBoart = () => {
                 <MdBookmarkAdded className='w-5 h-5' />
                 <span className='mx-4 font-medium uppercase'>My Booking</span>
             </NavLink>
-              </>
-            }
-
-          <hr className="my-5 border-gray-200 dark:border-gray-600" />
+            </>
+          }
+            
+          {/* <hr className="my-5 border-gray-200 dark:border-gray-600" />
 
             <NavLink to='/' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
-                      ? 'bg-blue-800 text-white' // Active state styles
+                      ? 'bg-blue-800 text-white'
                       : 'hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 text-gray-700' // Inactive state styles
                   }`
                 }>
@@ -213,7 +216,7 @@ const DashBoart = () => {
             <NavLink to='/' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
-                      ? 'bg-blue-800 text-white' // Active state styles
+                      ? 'bg-blue-800 text-white'
                       : 'hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 text-gray-700' // Inactive state styles
                   }`
                 }>
@@ -225,7 +228,7 @@ const DashBoart = () => {
             className={({ isActive }) =>
               `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                 isActive 
-                  ? 'bg-blue-800 text-white' // Active state styles
+                  ? 'bg-blue-800 text-white' 
                   : 'hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 text-gray-700' // Inactive state styles
               }`
             }>
@@ -236,22 +239,22 @@ const DashBoart = () => {
             <NavLink to='contactDash' className={({ isActive }) =>
                   `flex mt-3 rounded-md items-center px-2 py-2 transition-colors duration-300 transform ${
                     isActive 
-                      ? 'bg-blue-800 text-white' // Active state styles
+                      ? 'bg-blue-800 text-white' 
                       : 'hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 text-gray-700' // Inactive state styles
                   }`
                 }>
                 <MdContactMail className='w-5 h-5'/>
                 <span className='mx-4 font-medium uppercase'>Contact</span>
-            </NavLink>
+            </NavLink> 
 
-          <hr className="mt-5 border-gray-200 dark:border-gray-600" />
+          <hr className="mt-5 border-gray-200 dark:border-gray-600" /> */}
         </nav>
       </div>
         </div>
     
     <div>
        
-        <NavLink className={ ({isActive}) => `flex rounded-md items-center px-2 py-2 mt-3 transition-colors duration-300 transform hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" ${isActive ? 'text-gray-600' : 'text-gray-700'}`}>
+        <NavLink to='/' className={ ({isActive}) => `flex rounded-md items-center px-2 py-2 mt-3 transition-colors duration-300 transform hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" ${isActive ? 'text-gray-600' : 'text-gray-700'}`}>
                 <TbHomeMove className='w-5 h-5'/>
                 <span className='mx-4 font-medium uppercase'>Go To Home</span>
         </NavLink>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CategorySection from "../../../components/FoodCategorySection/CategorySection";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -10,6 +10,7 @@ import "@smastrom/react-rating/style.css";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
+  // const {user} = useContext(AuthContext);
   useEffect(() => {
     fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
@@ -29,8 +30,9 @@ const Testimonials = () => {
             <div className="flex flex-col justify-center items-center mx-24 my-3 space-y-3">
               <Rating style={{ maxWidth: 180 }} value={review.rating} readOnly />
               <p className="text-5xl font-semibold text-black">“</p>
+              <p className="font-semibold">{review.likeMost}</p>
               <p>{review.details}</p>
-              <h3 className="text-2xl text-orange-400">{review.name}</h3>
+              <h3 className="text-2xl text-orange-400">{review.userName}</h3>
             </div>
           </SwiperSlide>
         ))}

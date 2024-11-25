@@ -6,6 +6,7 @@ import { FaImages } from "react-icons/fa";
 import { MdFolderDelete } from "react-icons/md";
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../CustomHooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const SingleCart = () => {
     const {data, refetch} = useCarts();
@@ -51,7 +52,9 @@ const SingleCart = () => {
                 <h3>Total price: <span className='text-gray-200 bg-sky-800 px-3 py-2 rounded-2xl'>${totalPrice || 0}</span></h3>
             </div>
             <div>
-                <button className='btn btn-warning'>Pay</button>
+                {
+                    data?.length ? <Link to='/dashboard/payment'><button className='btn btn-warning'>Pay</button></Link> : <button disabled className='btn btn-warning'>Pay</button>
+                }
             </div>
     </div>
 
