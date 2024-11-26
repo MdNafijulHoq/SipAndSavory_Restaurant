@@ -8,6 +8,7 @@ import useAxiosPublic from '../../../CustomHooks/useAxiosPublic';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Providers/AuthProviders';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Reservation = () => {
     const { register, handleSubmit, reset } = useForm()
@@ -32,6 +33,9 @@ const Reservation = () => {
     }
     return (
         <div>
+          <Helmet>
+        <title>Reservation | Sip & Savory</title>
+      </Helmet>
             <CategorySection subHeading="Reservation" heading="BOOK A TABLE"></CategorySection>
             <div className='bg-slate-100 dark:bg-slate-300 px-6 sm:px-10 lg:px-14 py-6 rounded-md'>
                 <form action="" onSubmit={handleSubmit(onSubmit)}>

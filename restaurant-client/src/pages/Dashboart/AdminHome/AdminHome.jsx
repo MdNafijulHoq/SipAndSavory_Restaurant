@@ -3,6 +3,7 @@ import { AuthContext } from '../../../Providers/AuthProviders';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../CustomHooks/useAxiosSecure';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, PieChart, Pie, Sector, ResponsiveContainer, Legend } from 'recharts';
+import { Helmet } from 'react-helmet-async';
 
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042','red'];
@@ -62,7 +63,11 @@ const AdminHome = () => {
     })
 
     return (
-        <div className="p-4 md:p-6 lg:p-8">
+        <div>
+          <Helmet>
+        <title>Admin Home | Sip & Savory</title>
+      </Helmet>
+          <div className="p-4 md:p-6 lg:p-8">
   <h2 className="text-2xl md:text-3xl text-center mb-4">
     <span>
       Hi, Welcome {user?.displayName ? user?.displayName : "Back"}
@@ -158,6 +163,7 @@ const AdminHome = () => {
     </div>
   </div>
 </div>
+        </div>
 
     );
 };

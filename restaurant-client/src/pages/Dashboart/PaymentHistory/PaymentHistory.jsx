@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProviders';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../CustomHooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const PaymentHistory = () => {
     const { user } = useContext(AuthContext);
@@ -17,6 +18,9 @@ const PaymentHistory = () => {
     })
     return (
         <div>
+            <Helmet>
+        <title>Payment History | Sip & Savory</title>
+      </Helmet>
             
                 <div className='flex items-center gap-x-3'>
                     <h2 className="text-lg font-medium text-gray-800 dark:text-white">Total Payment:</h2>

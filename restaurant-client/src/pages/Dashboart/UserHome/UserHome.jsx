@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import { Helmet } from "react-helmet-async";
 
 const UserHome = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -11,7 +12,11 @@ const UserHome = () => {
 
 
   return (
-    <div className="p-4 md:p-6 lg:p-8">
+    <div>
+      <Helmet>
+        <title>User Home | Sip & Savory</title>
+      </Helmet>
+      <div className="p-4 md:p-6 lg:p-8">
       {/* Welcome Message */}
       <h2 className="text-xl sm:text-2xl lg:text-3xl text-center font-semibold mb-6">
         <span>
@@ -49,13 +54,13 @@ const UserHome = () => {
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
         <div className="stat bg-gradient-to-r from-purple-400 to-purple-200 text-center py-4 px-6 rounded-lg shadow-md">
           <div className="stat-title text-white text-sm lg:text-base">
-            Total Orders
+            Total Amount Pay : 
           </div>
           <div className="stat-value text-white text-lg lg:text-2xl">56</div>
         </div>
         <div className="stat bg-gradient-to-r from-amber-400 to-amber-200 text-center py-4 px-6 rounded-lg shadow-md">
           <div className="stat-title text-white text-sm lg:text-base">
-            Favorites
+            Total Pay: 
           </div>
           <div className="stat-value text-white text-lg lg:text-2xl">23</div>
         </div>
@@ -85,6 +90,7 @@ const UserHome = () => {
           Logout
         </button>
       </div>
+    </div>
     </div>
   );
 };

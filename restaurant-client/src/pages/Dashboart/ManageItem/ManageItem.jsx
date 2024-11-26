@@ -4,6 +4,7 @@ import useMenu from '../../../CustomHooks/useMenu';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../CustomHooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const ManageItem = () => {
     const [ menu, refetch ] = useMenu();
@@ -35,6 +36,9 @@ const ManageItem = () => {
     }
     return (
         <>
+        <Helmet>
+        <title>Manage Item | Sip & Savory</title>
+      </Helmet>
             <CategorySection subHeading="Hurry Up!" heading="MANAGE ALL ITEMS"></CategorySection>
         <section className="container px-4 mx-auto">
         <div className='flex items-center gap-x-3'>

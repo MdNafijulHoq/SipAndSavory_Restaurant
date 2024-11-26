@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { FaUsers } from 'react-icons/fa';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -56,6 +57,9 @@ const AllUsers = () => {
     }
     return (
         <div>
+            <Helmet>
+        <title>All Users | Sip & Savory</title>
+      </Helmet>
             <CategorySection subHeading={'How many??'} heading={'MANAGE ALL USERS'}></CategorySection>
         <section className="container px-4 mx-auto">
     <div className="flex justify-start items-center gap-x-3">  

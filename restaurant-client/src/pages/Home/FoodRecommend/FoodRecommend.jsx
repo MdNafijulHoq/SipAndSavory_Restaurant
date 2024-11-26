@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import CategorySection from "../../../components/FoodCategorySection/CategorySection";
 import salad from "../../../assets/home/slide1.jpg";
 import dessert from "../../../assets/home/slide4.jpg";
 import pizza from "../../../assets/home/slide2.jpg";
 
 const FoodRecommend = () => {
+  
   return (
     <div className="mb-[4rem]">
       <CategorySection
@@ -20,7 +21,7 @@ const FoodRecommend = () => {
             <h2 className="card-title">Caeser Salad</h2>
             <p>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
             <div className="card-actions justify-center">
-              <button className="btn btn-outline btn-accent uppercase border-0 border-b-4">
+              <button  className="btn btn-outline btn-accent uppercase border-0 border-b-4">
                 Add to Card
               </button>
             </div>
@@ -37,7 +38,7 @@ const FoodRecommend = () => {
               golden crust.
             </p>
             <div className="card-actions justify-center">
-              <button className="btn btn-outline btn-accent uppercase border-0 border-b-4">
+              <button  className="btn btn-outline btn-accent uppercase border-0 border-b-4">
                 Add to Card
               </button>
             </div>

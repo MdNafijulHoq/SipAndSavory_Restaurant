@@ -4,6 +4,7 @@ import useAxiosPublic from '../../../CustomHooks/useAxiosPublic';
 import { AuthContext } from '../../../Providers/AuthProviders';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 
 const MyBooking = () => {
@@ -47,6 +48,9 @@ const MyBooking = () => {
 
     return (
         <div>
+            <Helmet>
+        <title>My Booking | Sip & Savory</title>
+      </Helmet>
              <CategorySection subHeading="Excellent Ambience" heading="MY BOOKINGS"></CategorySection>
              <section className="container px-4 mx-auto">
     <div className="flex justify-start items-center gap-x-3">  

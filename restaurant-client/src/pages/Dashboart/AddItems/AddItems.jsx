@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import useAxiosPublic from '../../../CustomHooks/useAxiosPublic';
 import useAxiosSecure from '../../../CustomHooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -42,6 +43,9 @@ const AddItems = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Add Item Page | Sip & Savory</title>
+            </Helmet>
             <CategorySection subHeading="What's new?" heading="ADD AN ITEM"></CategorySection>
             <div className='bg-slate-100 dark:bg-slate-300 px-6 sm:px-10 lg:px-14 py-6 rounded-md'>
                 <form action="" onSubmit={handleSubmit(onSubmit)}>

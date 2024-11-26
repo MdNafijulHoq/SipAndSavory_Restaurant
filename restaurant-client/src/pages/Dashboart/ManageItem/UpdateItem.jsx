@@ -5,6 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 import useAxiosPublic from '../../../CustomHooks/useAxiosPublic';
 import useAxiosSecure from '../../../CustomHooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -43,6 +44,9 @@ const UpdateItem = () => {
     }
     return (
       <div>
+        <Helmet>
+        <title>Update Item | Sip & Savory</title>
+      </Helmet>
         <CategorySection subHeading='Refresh Info' heading='Update Item'></CategorySection>
           <div className='bg-slate-100 dark:bg-slate-300 px-6 sm:px-10 lg:px-14 py-6 rounded-md'>
                 <form action="" onSubmit={handleSubmit(onSubmit)}>

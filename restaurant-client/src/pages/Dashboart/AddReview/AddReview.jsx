@@ -5,6 +5,7 @@ import { MdOutlineRocketLaunch } from "react-icons/md";
 import useAxiosPublic from '../../../CustomHooks/useAxiosPublic';
 import { AuthContext } from '../../../Providers/AuthProviders';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const AddReview = () => {
     const { register, handleSubmit, reset } = useForm()
@@ -28,6 +29,9 @@ const AddReview = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Add Review | Sip & Savory</title>
+            </Helmet>
             <CategorySection subHeading="Sharing is Caring!!!" heading="GIVE A REVIEW..."></CategorySection>
             <div className='bg-slate-100 dark:bg-slate-300 px-6 sm:px-10 lg:px-14 py-6 rounded-md'>
                 <form action="" onSubmit={handleSubmit(onSubmit)}>

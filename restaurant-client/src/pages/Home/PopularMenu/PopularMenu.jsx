@@ -2,6 +2,7 @@ import React from 'react';
 import CategorySection from '../../../components/FoodCategorySection/CategorySection';
 import MenuItemCard from '../../Shared/MenuItemCard/MenuItemCard';
 import useMenu from '../../../CustomHooks/useMenu';
+import { Link } from 'react-router-dom';
 
 const PopularMenu = () => {
     const  [menu] = useMenu();
@@ -20,7 +21,7 @@ const PopularMenu = () => {
                     ></MenuItemCard>)
                 }
                 </div>
-                <p className='btn btn-outline btn-info uppercase max-w-64 flex mx-auto '>View Full Menu</p>
+                <Link to='/order/:category?'><button className='btn btn-outline btn-info border-0 border-b-4 uppercase max-w-64 flex mx-auto '>View Full Menu</button></Link>
         </div>
     );
 };
