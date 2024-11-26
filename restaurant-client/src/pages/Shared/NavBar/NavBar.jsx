@@ -58,9 +58,8 @@ const NavBar = () => {
                       Signed in as <span className='text-rose-800 font-semibold'>{user?.displayName}</span>
                     </p>
                   </li>
-                  <li><a href='#'>Bid Requests</a></li>
                   <li className='mt-2'>
-                    <button className='bg-gray-200 block text-center'>Logout</button>
+                    <button onClick={handleLogOut} className='bg-gray-200 block text-center'>Logout</button>
                   </li>
                 </ul>
               </div>
@@ -145,7 +144,6 @@ const NavBar = () => {
               </div>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li><p className="flex flex-col justify-start items-start">Signed in as <span className="text-rose-800 font-semibold">{user?.displayName}</span></p></li>
-                <li><a href='#'>Bid Requests</a></li>
                 <li className="mt-2"><button onClick={handleLogOut} className="bg-gray-200 hover:bg-gray-600 hover:text-white block text-center">Logout</button></li>
               </ul>
             </div>

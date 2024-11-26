@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 
 const axiosPublic = axios.create({
-    baseURL: 'https://restaurant-server-blush.vercel.app',
+    baseURL: 'https://restaurant-server-lime.vercel.app',
 })
 
 const useAxiosPublic = () => {

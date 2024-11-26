@@ -8,7 +8,7 @@ const useMenu = () => {
     // const [loading, setLoading] = useState(true);
     
     // useEffect(() => {
-    //     fetch('https://restaurant-server-blush.vercel.app/menu')
+    //     fetch('https://restaurant-server-lime.vercel.app/menu')
     //     .then(res => res.json())
     //     .then(data =>
     //     {
